@@ -231,6 +231,21 @@ namespace NBitcoin
 			}
 		}
 
+		/// <summary>
+		/// Get all words that begin with the specified characters
+		/// </summary>
+		/// <param name="beginsWith">Word beginning</param>
+		/// <returns></returns>
+		public string[] GetBeginsWith(string beginsWith)
+		{
+			return _words.Where(w => w.StartsWith(beginsWith)).ToArray();
+		}
+
+		public string[] GetWords()
+		{
+			return _words;
+		}
+
 
 		public static Task<Wordlist> AutoDetectAsync(string sentence)
 		{
@@ -359,6 +374,16 @@ namespace NBitcoin
 		{
 			return String.Join(Space.ToString(), GetWords(indices));
 
+		}
+
+		public string[] GetByPrefix(string prefix)
+		{
+			return _words.Where(w => w.StartsWith(prefix)).ToArray();
+		}
+
+		public string[] GetAllWords()
+		{
+			return _words;
 		}
 
 		public int[] ToIndices(string[] words)
